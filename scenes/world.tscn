@@ -42,6 +42,7 @@ texture = ExtResource( 2 )
 
 [node name="walls" type="StaticBody2D" parent="."]
 
+editor/display_folded = true
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -68,5 +69,42 @@ build_mode = 0
 polygon = Vector2Array( 688, 0, -48, 0, -80, -32, 720, -32, 720, 432, -80, 432, -80, -32, -48, 0, -48, 400, 688, 400 )
 shape_range = Vector2( 0, 3 )
 trigger = false
+
+[node name="p1_score" type="Label" parent="."]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 3.0
+margin/top = -1.0
+margin/right = 44.0
+margin/bottom = 13.0
+text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="p2_score" type="Label" parent="."]
+
+anchor/left = 1
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -495.0
+margin/top = 58.0
+margin/right = -535.0
+margin/bottom = 44.0
+text = "0"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 
