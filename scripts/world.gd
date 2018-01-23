@@ -45,7 +45,7 @@ func _on_ball_out(arg):
 	ball.set_pos(middle_position)
 	
 func _on_paddle_size_up(args):
-	print("paddle size up " + args[0])
+	get_node(args[0]).set_scale(Vector2(1,1.5))
 
 func _on_paddle_size_down(args):
-	print("paddle size down " + args[0])
+	get_node(args[0]).set_scale(Vector2(1,0.5))

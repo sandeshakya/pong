@@ -1,4 +1,4 @@
-extends Area2D
+extends RigidBody2D
 #dictionary of power (sprite_name: power_function)
 var power_dict = {}
 signal paddle_size_up
