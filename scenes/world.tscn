@@ -127,6 +127,7 @@ max_lines_visible = -1
 
 [node name="PowerUp" parent="." instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 472.476, 220.315 )
+transform/pos = Vector2( 436.164, 195.266 )
+speed = 7
 
 

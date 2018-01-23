@@ -46,6 +46,8 @@ func _on_ball_out(arg):
 	
 func _on_paddle_size_up(args):
 	get_node(args[0]).set_scale(Vector2(1,1.5))
+	print(args[0])
 
 func _on_paddle_size_down(args):
 	get_node(args[0]).set_scale(Vector2(1,0.5))
+	print(args[0])

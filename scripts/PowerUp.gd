@@ -1,8 +1,10 @@
-extends RigidBody2D
+extends Area2D
 #dictionary of power (sprite_name: power_function)
 var power_dict = {}
 signal paddle_size_up
 signal paddle_size_down
+export (int, 3, 7) var speed = 7
+var dir = 1
 
 func _ready():
 	#functions for dictionary
@@ -12,6 +14,15 @@ func _ready():
 	#initialize dictionary
 	power_dict["pdl_wide"] = pdl_wide_func
 	power_dict["pdl_small"] = pdl_small_func
+	set_fixed_process(true)
+
+func _fixed_process(delta):
+	var pos = get_pos()
+	if ((get_pos().y <= 0) or (get_pos().y >= get_viewport_rect().size.y)):
+		dir *= -1
+	pos.y += speed * dir
+	set_pos(pos)
+	
 
 func _on_PowerUp_body_enter( body ):
 	if (body.get_name() == "ball"):
@@ -26,4 +37,4 @@ func on_pdl_wide(paddle):
 	
 func on_pdl_small(paddle):
 	emit_signal("paddle_size_down", [paddle])
-	
+
