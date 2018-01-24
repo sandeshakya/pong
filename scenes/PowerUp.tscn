@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
-extents = Vector2( 30, 30 )
+extents = Vector2( 16, 16 )
 
 [sub_resource type="SpriteFrames" id=2]
 
@@ -38,7 +38,7 @@ script/script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-speed = 7
+speed = 5
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 

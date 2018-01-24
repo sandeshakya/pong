@@ -3,7 +3,7 @@ extends Area2D
 var power_dict = {}
 signal paddle_size_up
 signal paddle_size_down
-export (int, 3, 7) var speed = 7
+export (int, 3, 7) var speed = 5
 var dir = 1
 
 func _ready():
@@ -17,11 +17,15 @@ func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
-	var pos = get_pos()
-	if ((get_pos().y <= 0) or (get_pos().y >= get_viewport_rect().size.y)):
-		dir *= -1
-	pos.y += speed * dir
-	set_pos(pos)
+#	Bounce power up vertically
+#	var pos = get_pos()
+#	if ((get_pos().y <= 0) or (get_pos().y >= get_viewport_rect().size.y)):
+#		dir *= -1
+#	pos.y += speed * dir
+#	set_pos(pos)
+	pass
+	
+	
 	
 
 func _on_PowerUp_body_enter( body ):
@@ -31,6 +35,7 @@ func _on_PowerUp_body_enter( body ):
 			power_dict[get_node("sprite").get_animation()].call_func("left")
 		else:
 			power_dict[get_node("sprite").get_animation()].call_func("right")
+		self.queue_free()
 
 func on_pdl_wide(paddle):
 	emit_signal("paddle_size_up", [paddle])
