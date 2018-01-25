@@ -124,7 +124,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="tmr_pwrup" type="Timer" parent="."]
+[node name="power_spawn_timer" type="Timer" parent="."]
 
 process_mode = 1
 wait_time = 1.0

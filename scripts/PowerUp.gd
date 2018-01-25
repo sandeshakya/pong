@@ -24,9 +24,6 @@ func _fixed_process(delta):
 #	pos.y += speed * dir
 #	set_pos(pos)
 	pass
-	
-	
-	
 
 func _on_PowerUp_body_enter( body ):
 	if (body.get_name() == "ball"):
