@@ -12,12 +12,12 @@ onready var pwr_up_scene = load("res://scenes/PowerUp.tscn")
 onready var timer = get_node("tmr_pwrup")
 var p1_score
 var p2_score
-var num_pwrs = 0
-var max_pwrs = 1
+var size
+var pwr_up_time = [10,20]
 
 func _ready():
 	randomize()
-	var size = get_viewport_rect().size
+	size = get_viewport_rect().size
 	#setting object positions
 	left_position = Vector2(size.x/10, size.y/2)
 	right_position = Vector2(size.x/10*9, size.y/2)
@@ -32,11 +32,10 @@ func _ready():
 	p1_score = 0
 	p2_score = 0
 	#set timer stuff
-	timer.set_wait_time(rand_range(1, 5))
+	timer.set_wait_time(rand_range(pwr_up_time[0], pwr_up_time[1]))
 	timer.start()
 	timer.connect("timeout", self, "_on_timer_timeout")
 	ball.connect("ball_out", self, "_on_ball_out")
-	set_fixed_process(true)
 
 func _on_ball_out(arg):
 	var position = arg[0]
@@ -48,6 +47,11 @@ func _on_ball_out(arg):
 		p1_score_lbl.set_text(str(p1_score))
 	#center ball
 	ball.set_pos(middle_position)
+	#erase all power ups and stop spawing when ball out
+	timer.stop()
+	for child in get_children():
+		if ("power_ups" in child.get_groups()):
+			child.queue_free()
 	
 func _on_paddle_size_up(args):
 	get_node(args[0]).set_scale(Vector2(1,1.5))
@@ -56,12 +60,12 @@ func _on_paddle_size_down(args):
 	get_node(args[0]).set_scale(Vector2(1,0.5))
 	
 func _on_timer_timeout():
-	print("spawning power up")
-	
+	#dont spawn in ball is not being played
+	if (ball.get_pos().length() == 0): pass
 	var pwr_up = pwr_up_scene.instance()
 	pwr_up.connect("paddle_size_up", self, "_on_paddle_size_up")
 	pwr_up.connect("paddle_size_down", self, "_on_paddle_size_down")
-	randomize()
-	pwr_up.set_pos(Vector2(clamp(randi(), 200, 400), clamp(randi(), 200, 300)))
+	pwr_up.set_pos(Vector2(rand_range(size.x/3, size.x*2/3), rand_range(size.y/3, size.y*2/3)))
 	add_child(pwr_up)
-	timer.set_wait_time(rand_range(1, 5))
+	pwr_up.add_to_group("power_ups")
+	timer.set_wait_time(rand_range(pwr_up_time[0], pwr_up_time[1]))
