@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://scripts/world.gd" type="Script" id=1]
 [ext_resource path="res://sprites/separator.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/right.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/ball.tscn" type="PackedScene" id=5]
 [ext_resource path="res://font/Xolonium-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://scenes/PowerUp.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -124,11 +125,8 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="power_spawn_timer" type="Timer" parent="."]
+[node name="PowerUp" parent="." instance=ExtResource( 7 )]
 
-process_mode = 1
-wait_time = 1.0
-one_shot = false
-autostart = false
+transform/pos = Vector2( 288.933, 201.498 )
 
 
